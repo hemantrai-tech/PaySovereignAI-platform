@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: paysov-api
+    runtime: python
+    plan: starter
+    region: singapore
+    buildCommand: "echo Python standard library only"
+    startCommand: "python backend/main.py"
+    healthCheckPath: /healthz
+    disk:
+      name: paysov-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATA_DIR
+        value: /var/data
+      - key: HTTPS
+        value: "1"
